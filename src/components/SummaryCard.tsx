@@ -105,7 +105,7 @@ export const SummaryCard: React.FC<SummaryCardProps> = ({ card, initialBalance, 
                         <div className="flex gap-2 text-[10px] text-slate-400 mt-0.5">
                             <span>Corte: Día {card.cutoffDay || '?'}</span>
                             <span>•</span>
-                            <span>Pago: {card.gracePeriod ? `+${card.gracePeriod}d` : `Día ${card.paymentDay || '?'}`}</span>
+                            <span>Pago: {card.gracePeriod ? `+${card.gracePeriod}d` : `?`}</span>
                         </div>
                     )}
                 </div>

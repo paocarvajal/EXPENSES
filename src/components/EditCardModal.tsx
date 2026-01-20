@@ -17,14 +17,14 @@ const PRESET_COLORS = [
 export const EditCardModal: React.FC<EditCardModalProps> = ({ isOpen, onClose, card, onSave }) => {
     const [name, setName] = useState('');
     const [cutoffDay, setCutoffDay] = useState('');
-    const [paymentDay, setPaymentDay] = useState('');
+    const [gracePeriod, setGracePeriod] = useState('');
     const [color, setColor] = useState('');
 
     useEffect(() => {
         if (isOpen && card) {
             setName(card.name || '');
             setCutoffDay(card.cutoffDay?.toString() || '');
-            setPaymentDay(card.paymentDay?.toString() || '');
+            setGracePeriod(card.gracePeriod?.toString() || '');
             setColor(card.color || 'bg-slate-800');
         }
     }, [isOpen, card]);
@@ -38,7 +38,7 @@ export const EditCardModal: React.FC<EditCardModalProps> = ({ isOpen, onClose, c
             name,
             color,
             cutoffDay: card.type === 'credit' && cutoffDay ? parseInt(cutoffDay) : undefined,
-            paymentDay: card.type === 'credit' && paymentDay ? parseInt(paymentDay) : undefined,
+            gracePeriod: card.type === 'credit' && gracePeriod ? parseInt(gracePeriod) : undefined,
         };
         onSave(updatedCard);
         onClose();
@@ -73,11 +73,11 @@ export const EditCardModal: React.FC<EditCardModalProps> = ({ isOpen, onClose, c
                                 />
                             </div>
                             <div>
-                                <label className="block text-xs font-bold text-slate-500 dark:text-slate-400 uppercase mb-1">Día de Pago</label>
+                                <label className="block text-xs font-bold text-slate-500 dark:text-slate-400 uppercase mb-1">Días de Gracia</label>
                                 <input
                                     type="number"
-                                    value={paymentDay}
-                                    onChange={(e) => setPaymentDay(e.target.value)}
+                                    value={gracePeriod}
+                                    onChange={(e) => setGracePeriod(e.target.value)}
                                     className="w-full px-4 py-3 bg-slate-50 dark:bg-slate-900 border-none rounded-xl text-slate-800 dark:text-slate-200 focus:ring-2 focus:ring-blue-500 outline-none"
                                 />
                             </div>
