@@ -271,9 +271,13 @@ export default function Dashboard() {
                         onClick={() => {
                             if (confirm("¿Estás seguro de borrar todos los datos y empezar de cero?")) {
                                 setExpenses([]);
+                                setCards(DEFAULT_CARDS);
                                 const initial: Record<string, number> = {};
-                                Object.keys(cards).forEach(k => initial[k] = 0);
+                                Object.keys(DEFAULT_CARDS).forEach(k => initial[k] = 0);
                                 setInitialBalances(initial);
+                                localStorage.removeItem(STORAGE_KEY);
+                                localStorage.removeItem(BALANCE_KEY);
+                                localStorage.removeItem(CARDS_KEY);
                             }
                         }}
                         className="text-xs text-slate-300 hover:text-slate-500 dark:hover:text-slate-400 transition-colors"
